@@ -12,8 +12,8 @@ services:
       DB_HOST: hospital-database
       DB_PORT: 5432
     networks:
-      - database_net_storage
+      - net_storage
 
 networks:
-  database_net_storage:
+  net_storage:
     external: true

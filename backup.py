@@ -3,7 +3,7 @@ import datetime
 import os
 import subprocess
 
-def dump_backup():
+def dump_backup():    
     env = db.env
     timestamp = datetime.datetime.now().strftime('%d-%m-%Y')
     backup_file = f"{env['backup_dir']}/_backup_{timestamp}.sql"
@@ -11,7 +11,7 @@ def dump_backup():
     command = [
         'pg_dump',
         '-h', env['host'],
-        '-p', env['password'],
+        '-p', str(env['port']),
         '-U', env['user'],
         '-F', 'c',             # Custom format
         '-b',                  # Include large objects
@@ -22,7 +22,7 @@ def dump_backup():
 
     try:
         # Run the command
-        subprocess.run(command, check=True, env={"PGPASSWORD": 'your_password'})
+        subprocess.run(command, check=True, env={"PGPASSWORD": env['password']})
         print(f"Backup successful! Saved to {backup_file}")
     except subprocess.CalledProcessError as e:
         print(f"Backup failed: {e}")

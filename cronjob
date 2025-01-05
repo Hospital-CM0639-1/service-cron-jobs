@@ -1,0 +1,2 @@
+* * * * * python staff.py >> /var/log/cron-staff.log 2>&1
+* * * * * python beds.py >> /var/log/cron-beds.log 2>&1

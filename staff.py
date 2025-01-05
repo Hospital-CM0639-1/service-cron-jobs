@@ -11,4 +11,5 @@ for r in records:
     else:
         r[-1] = 'Not active'
     out_list.append(r)
+print(out_list)
 c.write_csv(datetime.now().strftime('%d-%m-%Y') + '-staff.csv', out_list)

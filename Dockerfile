@@ -1,12 +1,9 @@
 # Use Python 3.12 Alpine as the base image
 FROM python:3.12-alpine
 
-# Set environment variables to avoid buffer issues
-ENV PYTHONUNBUFFERED=1
-
 # Install necessary system dependencies
-RUN apk add --no-cache \
-	cronie \
+RUN apk add --no-cache postgresql\
+	&& apk add --no-cache cronie \
     && pip install --upgrade pip \
     && pip install psycopg2-binary
 
@@ -22,17 +19,13 @@ COPY day_vitals.py day_vitals.py
 COPY procedures.py procedures.py
 COPY staff.py staff.py
 COPY env.json env.json
-
-# Copy crontab file if needed (optional)
-#COPY my-cronjob /etc/cron.d/my-cronjob
+COPY list.py list.py
+COPY cronjob /etc/cron.d/cronjob
 
 # Set permissions and apply crontab
-#RUN chmod 0644 /etc/cron.d/my-cronjob && \
-#    crontab /etc/cron.d/my-cronjob && \
-#    touch /var/log/cron.log
+RUN chmod 744 /app && \    
+    touch /var/log/cron-staff.log && \
+	touch /var/log/cron-beds.log && \
+	crontab /etc/cron.d/cronjob
 
-# Expose ports if necessary (optional)
-#EXPOSE 8000
-
-# Start both cron and the Python app
-CMD ["sh", "-c", "python staff.py"]
+CMD ["crond", "-f", "-m off"]
