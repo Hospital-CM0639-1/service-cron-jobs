@@ -2,10 +2,8 @@ import psycopg2
 import json
 import os
 
-os.chdir('/app')
-
 t = ''
-with open('env.json', 'r') as f:
+with open('/app/env.json', 'r') as f:
     t = f.read()
 
 env = json.loads(t)
