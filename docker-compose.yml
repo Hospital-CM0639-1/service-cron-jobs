@@ -8,6 +8,10 @@ services:
     image: python:3.12-alpine
     container_name: hospital-cronjobs
     restart: always
+    volumes:
+      - type: bind
+        source: /home/maxine/reports
+        target: /app/reports
     environment:
       DB_HOST: hospital-database
       DB_PORT: 5432

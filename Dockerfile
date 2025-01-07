@@ -23,10 +23,10 @@ COPY list.py list.py
 COPY cronjob /etc/cron.d/cronjob
 
 # Set permissions and apply crontab
-RUN chmod 744 /app && \    
+RUN chmod 744 /app && \
     touch /var/log/cron-staff.log && \
 	touch /var/log/cron-beds.log && \
-	mkdir /app/reports && \
+	mkdir -p /app/reports && \
 	crontab /etc/cron.d/cronjob
 
 CMD ["crond", "-f", "-m off"]

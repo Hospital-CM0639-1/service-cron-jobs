@@ -1,3 +1,9 @@
 
 env.json
 *.csv
+
+### IntelliJ IDEA ###
+.idea/*
+*.iws
+*.iml
+*.ipr
