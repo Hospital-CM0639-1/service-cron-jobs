@@ -1,2 +1,6 @@
-* * * * * /usr/local/bin/python /app/staff.py >> /var/log/cron-staff.log 2>&1
-* * * * * /usr/local/bin/python /app/beds.py >> /var/log/cron-beds.log 2>&1
+0 9 1 * * /usr/local/bin/python /app/staff.py >> /var/log/cron-staff.log 2>&1
+0 23 * * * /usr/local/bin/python /app/beds.py >> /var/log/cron-beds.log 2>&1
+15 23 * * * /usr/local/bin/python /app/day_emergencies.py >> /var/log/cron-day_emergencies.log 2>&1
+0 6,22 * * * /usr/local/bin/python /app/day_vitals.py >> /var/log/cron-day_vitals.log 2>&1
+15 22 * * * /usr/local/bin/python /app/procedures.py >> /var/log/cron-procedures.log 2>&1
+0 6 * * 7 /usr/local/bin/python /app/backup.py >> /var/log/cron-backup.log 2>&1

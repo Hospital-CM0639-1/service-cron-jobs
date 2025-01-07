@@ -26,6 +26,10 @@ COPY cronjob /etc/cron.d/cronjob
 RUN chmod 744 /app && \
     touch /var/log/cron-staff.log && \
 	touch /var/log/cron-beds.log && \
+	touch /var/log/cron-day_emergencies.log && \
+	touch /var/log/cron-day_vitals.log && \
+	touch /var/log/cron-procedures.log && \
+	touch /var/log/cron-backup.log && \
 	mkdir -p /app/reports && \
 	crontab /etc/cron.d/cronjob
 
