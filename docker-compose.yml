@@ -10,7 +10,7 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: /home/maxine/reports
+        source: ./reports
         target: /app/reports
     environment:
       DB_HOST: hospital-database
